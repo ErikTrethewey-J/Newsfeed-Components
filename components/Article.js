@@ -93,7 +93,45 @@ const data = [
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
+*/
 
+const div1 = document.querySelector('.articles')
+
+function articleMaker(obj){
+  let app = document.createElement('div')
+  app.classList.add('articles')
+  div1.appendChild(app)
+
+  let h = document.createElement('h2')
+  h.textContent = obj.title;
+  app.appendChild(h)
+
+  let ab = document.createElement('p')
+  ab.classList.add('date')
+  ab.textContent = obj.date;
+  app.appendChild(ab)
+
+  let pTag1 = document.createElement('p')
+  app.appendChild(pTag1)
+  pTag1.textContent = obj.firstParagraph;
+  let pTag2 = document.createElement('p')
+  app.appendChild(pTag2)
+  pTag2.textContent = obj.secondParagraph;
+  let pTag3 = document.createElement('p')
+  pTag3.textContent = obj.thirdParagraph;
+  app.appendChild(pTag3)
+
+  let span1 = document.createElement('span')
+  span1.classList.add('expandButton')
+  span1.textContent = '+'
+  app.appendChild(span1)
+
+  span1.addEventListener('click', ()=> div.classList.toggle('article-open'))
+  
+  return articleMaker;
+}
+
+/*
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
@@ -110,7 +148,27 @@ const data = [
 
   Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
   to create a div.article element and append it to the DOM inside div.articles (see index.html).
+*/
+data.push({
+  title: 'title', 
+  date: 'date',
+  firstParagraph: 'this is a paragraph',
+  secondParagraph: 'this is another paragraph',
+  thirdParagraph: 'Really you needed more info?',
+})
+data.map((objData)=> {
+  articleMaker(objData)
+});
 
+
+/*
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+// data.push({
+//   title: 'title', 
+//   date: 'date',
+//   firstParagraph: 'this is a paragraph'
+//   secondParagraph: 'this is another paragraph'
+//   thirdParagraph: 'Really you needed more info?'
+// })
